@@ -99,7 +99,27 @@
 
 * **Inheritence In Python :** - two classes i.e. Person (parent class) and Employee (Child Class). The Employee class inherits from the Person class. We can use the methods of the person class through the employee class as seen in the display function in the above code. A child class can also modify the behavior of the parent class as seen through the details() method.
     - Here we are with an example:
-      
+  ```
+    class Parentcls:
+    def __init__(self,name,place):
+        self.name = name
+        self.place = place
+        
+    def info(self):
+        print(f"parent name is {self.name}, lives in {self.place}")
+    
+    class Child(Parentcls):
+        def showhobby(self):
+            print(f"{self.name}'s hobby is palying football")
+        # def __init__(self, name, place):
+        #     super().__init__(name, place)
+        
+    p1 = Child("lucky","delhi")
+    p1.info()
+    p1.showhobby()
+  ```
+
+    - Another Example: 
   ```
   # Python code to demonstrate how parent constructors
   # are called.
@@ -142,5 +162,4 @@
   # its instance
   a.display()
   a.details()
-  
 ```
