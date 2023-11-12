@@ -9,24 +9,8 @@
    - Inheritance
    - Data Abstraction
 
-![](https://media.geeksforgeeks.org/wp-content/uploads/20230818181616/Types-of-OOPS-2.gif)
-* **Python Class**
-    - A class is a collection of objects. A class contains the blueprints or the prototype from which the objects are being created. It is a logical entity that contains some attributes and methods.
+    ![](https://media.geeksforgeeks.org/wp-content/uploads/20230818181616/Types-of-OOPS-2.gif)
 
-      ```
-      #Python3 program to
-      #demonstrate defining
-      #a class
- 
-      class Dog:
-          pass
-      ```
-* **Python Object**
-    - The object is an entity that has a state and behavior associated with it. It may be any real-world object like a mouse, keyboard, chair, table, pen, etc
-
-      ```
-      obj = Dog()
-      ```
 * **The Python self**
     - Class methods must have an extra first parameter in the method definition. We do not give a value for this parameter when we call the method, Python provides it
     - If we have a method that takes no arguments, then we still have to have one argument.
@@ -84,7 +68,106 @@
       Tommy.speak()
 
       ```
+
+* **Python Class**
+    - A class is a collection of objects. A class contains the blueprints or the prototype from which the objects are being created. It is a logical entity that contains some attributes and methods.
+
+      ```
+      #Python3 program to
+      #demonstrate defining
+      #a class
+ 
+      class Dog:
+          pass
+      ```
+* **Python Object**
+    - The object is an entity that has a state and behavior associated with it. It may be any real-world object like a mouse, keyboard, chair, table, pen, etc
+
+      ```
+      obj = Dog()
+      ```
+
+* **Encapsulation :** -  It describes the idea of wrapping data and the methods that work on data within one unit. This puts restrictions on accessing variables and methods directly and can prevent the accidental modification of data.
+  
+  ![](https://www.boardinfinity.com/blog/content/images/2022/12/Your-paragraph-text--77-.jpg)
+  
+    - **Protected Members :** -  members of the class that cannot be accessed outside the class but can be accessed from within the class and its subclasses. To accomplish this in Python,it can be done by prefixing the name of the member by a single underscore “_”.
       
+      ```
+        # Python program to 
+        # demonstrate protected members 
+          
+        # Creating a base class 
+        class Base: 
+            def __init__(self): 
+          
+                # Protected member 
+                self._a = 2
+          
+        # Creating a derived class 
+        class Derived(Base): 
+            def __init__(self): 
+          
+                # Calling constructor of 
+                # Base class 
+                Base.__init__(self) 
+                print("Calling protected member of base class: ",  
+                      self._a) 
+          
+                # Modify the protected variable: 
+                self._a = 3
+                print("Calling modified protected member outside class: ", 
+                      self._a) 
+          
+          
+        obj1 = Derived() 
+          
+        obj2 = Base() 
+          
+        # Calling protected member 
+        # Can be accessed but should not be done due to convention 
+        print("Accessing protected member of obj1: ", obj1._a) 
+          
+        # Accessing the protected variable outside 
+        print("Accessing protected member of obj2: ", obj2._a) 
+      ```
+  - **Private Members :** - Private members are similar to protected members, the difference is that the class members declared private should neither be accessed outside the class nor by any base class. To define a private member prefix the member name with double underscore “__”.
+        ```
+        # Python program to 
+        # demonstrate private members 
+          
+        # Creating a Base class 
+          
+          
+        class Base: 
+            def __init__(self): 
+                self.a = "GeeksforGeeks"
+                self.__c = "GeeksforGeeks"
+          
+        # Creating a derived class 
+        class Derived(Base): 
+            def __init__(self): 
+          
+                # Calling constructor of 
+                # Base class 
+                Base.__init__(self) 
+                print("Calling private member of base class: ") 
+                print(self.__c) 
+          
+          
+        # Driver code 
+        obj1 = Base() 
+        print(obj1.a) 
+          
+        # Uncommenting print(obj1.c) will 
+        # raise an AttributeError 
+          
+        # Uncommenting obj2 = Derived() will 
+        # also raise an AttributeError as 
+        # private member of base class 
+        # is called inside derived class 
+        ```
+  
 * **Python Inheritance :** - Inheritance is the capability of one class to derive or inherit the properties from another class. The class that derives properties is called the derived class or child class and the class from which the properties are being derived is called the base class or parent class.
   - The benefits of inheritance are:
       - t represents real-world relationships well.
@@ -98,68 +181,74 @@
     - **Multiple Inheritance:** Multiple-level inheritance enables one derived class to inherit properties from more than one base class.
 
 * **Inheritence In Python :** - two classes i.e. Person (parent class) and Employee (Child Class). The Employee class inherits from the Person class. We can use the methods of the person class through the employee class as seen in the display function in the above code. A child class can also modify the behavior of the parent class as seen through the details() method.
+  
     - Here we are with an example:
-  ```
-    class Parentcls:
-    def __init__(self,name,place):
-        self.name = name
-        self.place = place
+      
+      ```
+        class Parentcls:
+        def __init__(self,name,place):
+            self.name = name
+            self.place = place
+            
+        def info(self):
+            print(f"parent name is {self.name}, lives in {self.place}")
         
-    def info(self):
-        print(f"parent name is {self.name}, lives in {self.place}")
-    
-    class Child(Parentcls):
-        def showhobby(self):
-            print(f"{self.name}'s hobby is palying football")
-        # def __init__(self, name, place):
-        #     super().__init__(name, place)
-        
-    p1 = Child("lucky","delhi")
-    p1.info()
-    p1.showhobby()
-  ```
+        class Child(Parentcls):
+            def showhobby(self):
+                print(f"{self.name}'s hobby is palying football")
+            # def __init__(self, name, place):
+            #     super().__init__(name, place)
+            
+        p1 = Child("lucky","delhi")
+        p1.info()
+        p1.showhobby()
+      ```
 
-    - Another Example: 
-  ```
-  # Python code to demonstrate how parent constructors
-  # are called.
-  
-  # parent class
-  class Person(object):
-  
-  	# __init__ is known as the constructor
-  	def __init__(self, name, idnumber):
-  		self.name = name
-  		self.idnumber = idnumber
-  
-  	def display(self):
-  		print(self.name)
-  		print(self.idnumber)
-  		
-  	def details(self):
-  		print("My name is {}".format(self.name))
-  		print("IdNumber: {}".format(self.idnumber))
-  	
-  # child class
-  class Employee(Person):
-  	def __init__(self, name, idnumber, salary, post):
-  		self.salary = salary
-  		self.post = post
-  
-  		# invoking the __init__ of the parent class
-  		Person.__init__(self, name, idnumber)
-  		
-  	def details(self):
-  		print("My name is {}".format(self.name))
-  		print("IdNumber: {}".format(self.idnumber))
-  		print("Post: {}".format(self.post))
-  
-  
-  # creation of an object variable or an instance
-  a = Employee('Rahul', 886012, 200000, "Intern")
-  
-  # calling a function of the class Person using
-  # its instance
-  a.display()
-  a.details()
-```
+    - Another Example:
+      
+      ```
+      # Python code to demonstrate how parent constructors
+      # are called.
+      
+      # parent class
+      class Person(object):
+      
+      	# __init__ is known as the constructor
+      	def __init__(self, name, idnumber):
+      		self.name = name
+      		self.idnumber = idnumber
+      
+      	def display(self):
+      		print(self.name)
+      		print(self.idnumber)
+      		
+      	def details(self):
+      		print("My name is {}".format(self.name))
+      		print("IdNumber: {}".format(self.idnumber))
+      	
+      # child class
+      class Employee(Person):
+      	def __init__(self, name, idnumber, salary, post):
+      		self.salary = salary
+      		self.post = post
+      
+      		# invoking the __init__ of the parent class
+      		Person.__init__(self, name, idnumber)
+      		
+      	def details(self):
+      		print("My name is {}".format(self.name))
+      		print("IdNumber: {}".format(self.idnumber))
+      		print("Post: {}".format(self.post))
+      
+      
+      # creation of an object variable or an instance
+      a = Employee('Rahul', 886012, 200000, "Intern")
+      
+      # calling a function of the class Person using
+      # its instance
+      a.display()
+      a.details()
+      ```
+
+  <em>these Notes are derived from GFG</em>
+        
